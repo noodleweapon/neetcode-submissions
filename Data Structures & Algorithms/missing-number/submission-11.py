@@ -1,0 +1,14 @@
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        v = 0
+        for i in range(len(nums) + 1):
+            v = v ^ i
+            if i < len(nums):
+                v = v ^ nums[i]
+        return v
+
+
+        # Naive approach
+        # for i in range(len(nums) + 1):
+        #     if i not in nums:
+        #         return i
