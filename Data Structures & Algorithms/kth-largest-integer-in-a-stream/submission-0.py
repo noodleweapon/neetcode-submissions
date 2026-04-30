@@ -1,0 +1,14 @@
+import heapq
+
+class KthLargest:
+
+    def __init__(self, k: int, nums: List[int]):
+        self.nums = heapq.heapify(nums)
+        self.k = k
+
+    def add(self, val: int) -> int:
+        heapq.heappush(self.nums, val)
+        ns = heapq.nlargest(val, self.k)
+        return ns[-1]
+
+        
