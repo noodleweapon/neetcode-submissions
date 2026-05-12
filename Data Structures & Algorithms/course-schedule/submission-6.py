@@ -1,0 +1,20 @@
+class Solution:
+    def rec(self, i, d, seen):
+        seen.add(i)
+        for prereq in d[i]:
+            if prereq in seen:
+                return False
+            if not self.rec(prereq, d, seen):
+                return False
+        seen.discard(i) # why did I have to add this here?
+        return True
+
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        d = defaultdict(set)
+        for course, prereq in prerequisites:
+            d[course].add(prereq)
+        
+        for i in range(numCourses):
+            if not self.rec(i, d, set()):
+                return False
+        return True
